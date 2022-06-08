@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "types": ["vite/client"],
+    "noEmit": true,
+    "moduleResolution": "node",
+    "jsxImportSource": "solid-js",
+    "jsx": "preserve",
+    "esModuleInterop": true
+  }
+}
