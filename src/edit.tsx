@@ -144,7 +144,6 @@ function EditCover(p: {cover: ChartCover}) {
 }
 
 function GetImage(p: {setValue: (url: string) => void}) {
-  throw new Error('Івел сінер тупий підарас')
   const input = signal<HTMLInputElement>()
 
   function handle() {
