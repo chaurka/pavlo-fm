@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [solid()],
   build: {
     target: 'esnext',
-    polyfillDynamicImport: false
+    polyfillDynamicImport: false,
+    minify: false,
+    sourcemap: true
   },
   resolve: {alias: {$: relative('src/')}}
 })
