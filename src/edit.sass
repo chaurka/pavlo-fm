@@ -1,0 +1,45 @@
+@use "$/shared" as *
+
+.edit
+  width: 100%
+  height: 100%
+  @include column
+  gap: 10px
+.edit-grid
+  @include column
+  gap: 0
+  position: relative
+  overflow: scroll
+  width: 100%
+  border-radius: 5px
+.edit-row
+  @include row
+  gap: 0
+  height: 100%
+.edit-cell
+  width: 100%
+  background-color: var(--dark)
+  background-size: cover
+  position: relative
+.edit-cell-edit
+  opacity: 0
+  position: absolute
+  right: 5px
+  top: 5px
+  font-size: .85em
+  padding: 3px
+.edit-cell:hover .edit-cell-edit, .edit-cell.show .edit-cell-edit
+  opacity: 1
+.edit-cell-title
+  width: 100%
+  text-align: center
+  position: absolute
+  bottom: 0
+  padding: 2px
+  background-color: rgba(0,0,0,.3)
+  color: white
+  font-size: .75em
+
+.edit-cover
+  @include column
+  gap: 10px

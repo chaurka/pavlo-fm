@@ -1,0 +1,18 @@
+@use "$/shared" as *
+
+.charts
+  width: 100%
+  @include column
+  gap: 20px
+.charts-list
+  @include column
+.charts-item
+  display: flex
+  justify-content: space-between
+.charts-item-title.selected
+  color: var(--primary)
+.charts-item-tools
+  @include row
+  font-size: .85rem
+.charts-item-tools button
+  padding: 3px

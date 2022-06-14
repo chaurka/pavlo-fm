@@ -1,7 +1,9 @@
 /* @refresh reload */
 
-import {render} from 'solid-js/web'
+import '@fontsource/noto-sans'
+import '$/global.sass'
 
-const App = () => <>Чупапі бебрае жаєаєа</>
+import {render} from 'solid-js/web'
+import {App} from '$/app'
 
 render(() => <App />, document.body)

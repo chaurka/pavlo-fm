@@ -1,0 +1,14 @@
+@use "$/shared" as *
+
+.app
+  width: 100%
+  @include column
+  gap: 20px
+  align-items: center
+  max-width: 600px
+.app-title
+  margin-bottom: 10px
+  @media (max-width: 600px)
+    font-size: 1.2em
+.app-title-highlight
+  color: var(--primary)

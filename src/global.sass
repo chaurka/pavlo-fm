@@ -1,0 +1,45 @@
+@use "$/shared" as *
+
+*, *::before, *::after
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+:root
+  --primary: #2879f3
+  --primary-dark: #2571e2
+  --gray: #e2e2e2
+  --gray-dark: #aaa
+  --gray-light: #eee
+  --dark: #555
+
+:root, body
+  height: 100%
+  position: relative
+
+body
+  font-family: 'Noto Sans'
+  background-color: #f9f9f9
+  color: var(--dark)
+  font-size: 1.1em
+
+  display: flex
+  justify-content: center
+  padding: 10px
+
+button
+  @include container
+  border: none
+  font: inherit
+  background-color: var(--primary)
+  color: white
+  font-weight: bold
+  &:hover
+    background-color: var(--primary-dark)
+
+input
+  border: 1px solid var(--gray)
+  border-radius: 3px
+  padding: 5px
+  font: inherit
+  width: 100%

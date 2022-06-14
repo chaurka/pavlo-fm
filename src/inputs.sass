@@ -1,0 +1,22 @@
+@use "$/shared" as *
+
+.get-int
+  width: 100%
+  @include row
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+.get-int-button
+  padding: 5px
+  font-size: 1.1em
+.get-int-value
+  width: 100%
+  @include container
+  border: none
+  background-color: var(--gray)
+  display: flex
+  justify-content: center
+  align-items: center
+
+.get-bool
+  width: 100%
+  text-align: center

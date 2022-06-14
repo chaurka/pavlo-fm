@@ -1,0 +1,23 @@
+@use "$/shared.sass" as *
+
+.config
+  @include column
+  width: 100%
+.config-pref
+  display: grid
+  grid-template-columns: 1fr 1fr
+.config-pref-label
+  display: flex
+  align-items: center
+  font-weight: bold
+.config-pref-input
+  width: 100%
+  @include row
+
+.config-pref-int
+  width: 100%
+  @include row
+  display: grid
+  grid-template-columns: 3fr 1.1fr
+.config-pref-int-sync
+  min-width: 50px
