@@ -3,12 +3,16 @@
 .charts
   width: 100%
   @include column
-  gap: 20px
+  gap: var(--gap-large)
 .charts-list
   @include column
 .charts-item
   display: flex
+  gap: 10px
   justify-content: space-between
+.charts-item-title
+  flex-grow: 0
+  overflow-x: scroll
 .charts-item-title.selected
   color: var(--primary)
 .charts-item-tools

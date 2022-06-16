@@ -1,5 +1,8 @@
 import {createMutable} from 'solid-js/store'
-import {signal} from '$/lib'
+import {signal, managedSignal, createMinmax} from '$/lib/reactive'
+
+const k_toDto = Symbol()
+const k_fromDto = Symbol()
 
 export interface ChartCoverDto {
   src: string
@@ -8,7 +11,7 @@ export interface ChartCoverDto {
 }
 
 export class ChartCover {
-  static fromDto(dto: ChartCoverDto) {
+  static [k_fromDto](dto: ChartCoverDto) {
     const obj = new ChartCover()
 
     obj.artist(dto.artist)
@@ -20,9 +23,9 @@ export class ChartCover {
 
   artist = signal('')
   album = signal('')
-  src = signal('')
+  src = signal('');
 
-  toDto(): ChartCoverDto {
+  [k_toDto](): ChartCoverDto {
     return {
       artist: this.artist(),
       album: this.album(),
@@ -40,39 +43,47 @@ export interface ChartDto {
 }
 
 export class Chart {
-  static fromDto(dto: ChartDto) {
+  static MIN_SIDE = 1
+  static MAX_SIDE = 25
+
+  static [k_fromDto](dto: ChartDto) {
     const obj = new Chart()
 
     obj.width(dto.width)
     obj.height(dto.height)
     obj.showTitles(dto.showTitles)
     obj.name(dto.name)
-    obj.covers.push(...dto.covers.map(c => ChartCover.fromDto(c)))
+    obj.covers.push(...dto.covers.map(c => ChartCover[k_fromDto](c)))
 
     return obj
   }
 
-  width = signal(3)
-  height = signal(3)
+  width = createMinmax(3, 1, 25)
+  height = createMinmax(3, 1, 25)
   showTitles = signal(true)
-  name = signal('Unnamed')
+  name = managedSignal('Unnamed', undefined, next => next || 'Unnamed')
   covers = createMutable<ChartCover[]>([])
 
   getCover(i: number) {
     return (this.covers[i] ??= new ChartCover())
   }
 
-  toDto(): ChartDto {
+  [k_toDto](): ChartDto {
     return {
       width: this.width(),
       height: this.height(),
       showTitles: this.showTitles(),
       name: this.name(),
-      covers: this.covers.map(c => c.toDto())
+      covers: this.covers.map(c => c[k_toDto]())
     }
   }
 
   clone() {
-    return Chart.fromDto(this.toDto())
+    return Chart[k_fromDto](this[k_toDto]())
   }
 }
+
+export const serializeCharts = (charts: Chart[]) =>
+  charts.map(c => c[k_toDto]())
+export const deserializeCharts = (data: any) =>
+  (data as ChartDto[]).map(chart => Chart[k_fromDto](chart))

@@ -11,7 +11,11 @@
   --gray: #e2e2e2
   --gray-dark: #aaa
   --gray-light: #eee
-  --dark: #555
+  --dark: #333
+  --gap-large: 20px
+  @media (max-width: 600px)
+    --gap-large: 10px
+  --font-bigger: 1.2em
 
 :root, body
   height: 100%
@@ -27,7 +31,7 @@ body
   justify-content: center
   padding: 10px
 
-button
+button, .button
   @include container
   border: none
   font: inherit

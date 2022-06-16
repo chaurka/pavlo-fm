@@ -1,7 +1,7 @@
-import '$/tabs.sass'
+import './styles.sass'
 
 import {JSXElement, For} from 'solid-js'
-import {signal} from '$/lib'
+import {signal} from '$/lib/reactive'
 
 export function Tabs(p: {children: {title: string; content: JSXElement}[]}) {
   const active = signal(0)

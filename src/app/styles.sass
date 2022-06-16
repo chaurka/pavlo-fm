@@ -3,12 +3,15 @@
 .app
   width: 100%
   @include column
-  gap: 20px
+  gap: var(--gap-large)
   align-items: center
   max-width: 600px
 .app-title
-  margin-bottom: 10px
   @media (max-width: 600px)
-    font-size: 1.2em
+    width: 100%
+    font-size: var(--font-bigger)
+.app-state
+  width: 100%
+  font-size: var(--font-bigger)
 .app-title-highlight
   color: var(--primary)

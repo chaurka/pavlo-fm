@@ -1,26 +1,24 @@
-import '$/charts.sass'
+import './styles.sass'
 
-import {Channel} from '$/lib'
+import {Store} from '$/domain/store'
+import {Chart} from '$/domain/chart'
 import {For} from 'solid-js'
-import {Chart} from '$/chart'
 
-export function Charts(p: {
-  currentChartIndex: Channel<number>
-  currentChart: Channel<Chart>
-  charts: Channel<Chart[]>
-}) {
+export function Charts(store: Store) {
   function create() {
     const chart = new Chart()
-    p.charts(p.charts().slice().concat(chart))
-    p.currentChartIndex(p.charts().length - 1)
+    store.charts(store.charts().slice().concat(chart))
+    store.currentChartIndex(store.charts().length - 1)
   }
+
   function select(i: number) {
-    p.currentChartIndex(i)
+    store.currentChartIndex(i)
   }
   function del(i: number) {
-    const clone = p.charts().slice()
+    if (!confirm('This action is irreversible! Proceed?')) return
+    const clone = store.charts().slice()
     clone.splice(i, 1)
-    p.charts(clone)
+    store.charts(clone)
   }
 
   return (
@@ -28,7 +26,7 @@ export function Charts(p: {
       <button onClick={create}>Create new chart</button>
       <div class="charts-list">
         <For
-          each={p.charts()}
+          each={store.charts()}
           fallback={<em>Create a chart to get started</em>}
         >
           {(chart, i) => (
@@ -36,7 +34,7 @@ export function Charts(p: {
               <div
                 class="charts-item-title"
                 classList={{
-                  selected: chart === p.currentChart()
+                  selected: chart === store.currentChart()
                 }}
               >
                 {chart.name()}
