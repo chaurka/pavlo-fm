@@ -47,10 +47,6 @@ export function GetString(p: InputProps<string>) {
 export function GetImage(p: InputProps<string>) {
   const input = signal<HTMLInputElement>()
 
-  effect(() => {
-    input().value = p.value()
-  })
-
   function handle() {
     const file = input().files?.item(0)
     if (file) dataUrl(file).then(url => p.value(url))

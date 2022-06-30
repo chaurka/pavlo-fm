@@ -22,7 +22,7 @@ export function ConfigPrefInt(
   return (
     <ConfigPref label={p.label}>
       <div class="config-pref-int">
-        <GetInt min={p.min} max={p.max} value={p.value} />
+        <GetInt value={p.value} />
         <Show when={p.sync}>
           <button class="config-pref-int-sync" onClick={p.sync}>
             sync

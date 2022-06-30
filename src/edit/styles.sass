@@ -9,18 +9,19 @@
   height: 100%
   @include column
   gap: 10px
-.edit-grid
+
+.grid
   @include column
   gap: 0
   position: relative
   overflow: scroll
   width: 100%
   border-radius: 5px
-.edit-row
+.grid-row
   @include row
   gap: 0
   height: 100%
-.edit-cell
+.grid-cell
   width: 100%
   background-color: var(--dark)
   background-size: cover
@@ -29,9 +30,9 @@
   justify-content: center
   align-items: center
   position: relative
-.edit-cell:hover .edit-cell-caption
+.grid-cell:hover .grid-cell-caption
   opacity: 1
-.edit-cell-caption
+.grid-cell-caption
   opacity: 0
   user-select: none
   color: white
@@ -42,7 +43,7 @@
   align-items: center
   padding: .5rem 2rem
   @include darker
-.edit-cell-title
+.grid-cell-title
   @include darker
   position: absolute
   text-align: center

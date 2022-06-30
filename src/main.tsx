@@ -1,5 +1,3 @@
-/* @refresh reload */
-
 import '@fontsource/noto-sans'
 import '$/global.sass'
 

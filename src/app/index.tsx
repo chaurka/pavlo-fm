@@ -1,6 +1,7 @@
 import './styles.sass'
 
-import {Show, JSXElement} from 'solid-js'
+import {Show} from 'solid-js'
+import {Fallback} from '$/lib/fallback'
 
 import {Chart} from '$/domain/chart'
 import {createStore} from '$/domain/store'
@@ -25,31 +26,28 @@ export function App() {
         {pendingSync() ? '🤔 Out of sync' : '🥳 Charts are saved'}
       </div>
       <Charts {...store} />
-      <Tabs>
-        {[
-          {
-            title: 'Configure chart',
-            content: (
-              <Show when={store.currentChart()} fallback={Fallback}>
-                {chart => <AppConfig chart={chart} />}
-              </Show>
-            )
-          },
-          {
-            title: 'Edit chart',
-            content: (
-              <Show when={store.currentChart()} fallback={Fallback}>
-                {chart => <Edit chart={chart} />}
-              </Show>
-            )
-          }
-        ]}
-      </Tabs>
+      <Show
+        when={store.currentChart()}
+        fallback={<Fallback>Nothing to edit</Fallback>}
+      >
+        {chart => (
+          <Tabs>
+            {[
+              {
+                title: 'Configure chart',
+                content: <AppConfig chart={chart} />
+              },
+              {
+                title: 'Edit chart',
+                content: <Edit chart={chart} />
+              }
+            ]}
+          </Tabs>
+        )}
+      </Show>
     </div>
   )
 }
-
-const Fallback = () => <em>Create or select a chart to get started</em>
 
 function AppConfig(p: {chart: Chart}) {
   const syncWidth = () => void p.chart.height(p.chart.width())
@@ -60,20 +58,8 @@ function AppConfig(p: {chart: Chart}) {
       <ConfigPref label="Name">
         <GetString value={p.chart.name} />
       </ConfigPref>
-      <ConfigPrefInt
-        label="Width"
-        value={p.chart.width}
-        min={Chart.MIN_SIDE}
-        max={Chart.MAX_SIDE}
-        sync={syncWidth}
-      />
-      <ConfigPrefInt
-        label="Height"
-        value={p.chart.height}
-        min={Chart.MIN_SIDE}
-        max={Chart.MAX_SIDE}
-        sync={syncHeight}
-      />
+      <ConfigPrefInt label="Width" value={p.chart.width} sync={syncWidth} />
+      <ConfigPrefInt label="Height" value={p.chart.height} sync={syncHeight} />
       <ConfigPref label="Show titles">
         <GetBool value={p.chart.showTitles} />
       </ConfigPref>

@@ -58,8 +58,8 @@ export class Chart {
     return obj
   }
 
-  width = createMinmax(3, 1, 25)
-  height = createMinmax(3, 1, 25)
+  width = createMinmax(3, Chart.MIN_SIDE, Chart.MAX_SIDE)
+  height = createMinmax(3, Chart.MIN_SIDE, Chart.MAX_SIDE)
   showTitles = signal(true)
   name = managedSignal('Unnamed', undefined, next => next || 'Unnamed')
   covers = createMutable<ChartCover[]>([])

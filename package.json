@@ -4,13 +4,14 @@
   "scripts": {
     "dev": "vite"
   },
-  "devDependencies": {
+  "dependencies": {
     "@fontsource/noto-sans": "^4.5.10",
     "@solid-primitives/resize-observer": "^2.0.2",
     "sass": "^1.52.2",
     "solid-js": "^1.4.3",
     "typescript": "^4.7.3",
     "vite": "^2.9.10",
+    "vite-plugin-checker": "^0.4.6",
     "vite-plugin-solid": "^2.2.6"
   }
 }

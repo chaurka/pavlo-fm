@@ -3,6 +3,7 @@ import './styles.sass'
 import {Store} from '$/domain/store'
 import {Chart} from '$/domain/chart'
 import {For} from 'solid-js'
+import {Fallback} from '$/lib/fallback'
 
 export function Charts(store: Store) {
   function create() {
@@ -25,10 +26,7 @@ export function Charts(store: Store) {
     <div class="charts">
       <button onClick={create}>Create new chart</button>
       <div class="charts-list">
-        <For
-          each={store.charts()}
-          fallback={<em>Create a chart to get started</em>}
-        >
+        <For each={store.charts()} fallback={<Fallback>No charts</Fallback>}>
           {(chart, i) => (
             <div class="charts-item">
               <div
